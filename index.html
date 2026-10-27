@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="The Lens Project">
+<meta property="og:description" content="Bridging the last mile to eye care: free eye checkups, cataract surgery and lenses for elderly villagers and people affected by leprosy in rural Bengal.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23e8820c'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23fff'/%3E%3C/svg%3E">
+<title>The Lens Project</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="The Lens Project brings free eye care and cataract surgery to underprivileged senior citizens and people affected by leprosy in rural Bengal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: same system as Ilina's portfolio. One calm column, generous space, few sections, one orange accent. */
+:root {
+  --bg: #fafafa; --band: #f4f4f2; --surface: #ffffff; --card: #f8f3ea; --card-line: #f0e0c6;
+  --fg: #17181b; --muted: #5d6066; --line: #e4e4e1;
+  --accent: #e8820c; --accent-ink: #b45f00; --accent-soft: #fcebd3;
+  --dark-btn: #17181b; --dark-btn-fg: #ffffff;
+  --display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121212; --band: #171716; --surface: #1c1c1b; --card: #201c16; --card-line: #3a3023;
+    --fg: #f0efec; --muted: #a3a29d; --line: #2c2c2a; --accent: #f5a142; --accent-ink: #f5a142; --accent-soft: #3a2a15;
+    --dark-btn: #f0efec; --dark-btn-fg: #121212; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121212; --band: #171716; --surface: #1c1c1b; --card: #201c16; --card-line: #3a3023;
+  --fg: #f0efec; --muted: #a3a29d; --line: #2c2c2a; --accent: #f5a142; --accent-ink: #f5a142; --accent-soft: #3a2a15;
+  --dark-btn: #f0efec; --dark-btn-fg: #121212; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16.5px; line-height: 1.7; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+a { color: inherit; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+
+header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 16px; }
+.brand { font-family: var(--display); font-weight: 800; font-size: 20px; text-decoration: none; white-space: nowrap; }
+.brand span { color: var(--accent); }
+nav { display: flex; gap: 28px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+nav::-webkit-scrollbar { display: none; }
+nav a { text-decoration: none; color: var(--muted); font-size: 15px; white-space: nowrap; }
+nav a:hover { color: var(--fg); }
+
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 64px; align-items: center; padding-block: 104px 96px; }
+.eyebrow { font-family: var(--mono); color: var(--accent-ink); font-size: 14.5px; margin: 0 0 18px; }
+.hero h1 { font-size: clamp(42px, 6.4vw, 68px); line-height: 1.04; font-weight: 800; letter-spacing: -0.025em; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.lede { font-size: 19px; color: var(--muted); max-width: 52ch; margin: 26px 0 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 10px; font-family: var(--display); font-weight: 700; font-size: 16px; text-decoration: none; border: 1px solid var(--line); background: var(--surface); color: var(--fg); transition: transform .15s, border-color .15s; }
+.btn:hover { transform: translateY(-1px); border-color: var(--muted); }
+.btn.primary { background: var(--dark-btn); color: var(--dark-btn-fg); border-color: var(--dark-btn); }
+.hero-photo { border-radius: 22px; overflow: hidden; border: 6px solid var(--surface); outline: 1.5px solid var(--card-line); box-shadow: 0 30px 60px -30px rgba(0,0,0,.35); }
+.hero-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.hero figcaption { font-size: 13px; color: var(--muted); margin-top: 12px; }
+
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stat { padding: 32px 24px; border-left: 1px solid var(--line); }
+.stat:first-child { border-left: 0; padding-left: 0; }
+.stat b { display: block; font-family: var(--display); font-size: clamp(32px, 4vw, 44px); font-weight: 800; line-height: 1; color: var(--accent-ink); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.stat span { display: block; margin-top: 8px; font-size: 14.5px; color: var(--muted); }
+
+section.band { background: var(--band); }
+.sec { padding-block: 112px; }
+.pill { display: inline-block; font-family: var(--mono); font-size: 12.5px; color: var(--accent-ink); background: var(--accent-soft); padding: 5px 12px; border-radius: 999px; }
+.sec-head { margin-bottom: 48px; max-width: 680px; }
+.sec-head h2 { font-size: clamp(32px, 4.6vw, 46px); font-weight: 800; letter-spacing: -0.02em; margin-top: 14px; line-height: 1.08; }
+.sec-head p { color: var(--muted); margin: 14px 0 0; font-size: 18px; }
+
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
+.prose p { margin: 0 0 18px; max-width: 58ch; }
+.prose p.muted { color: var(--muted); }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; counter-reset: step; }
+.steps li { counter-increment: step; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 28px; }
+.steps li::before { content: "0" counter(step); display: block; font-family: var(--mono); font-size: 13px; color: var(--accent-ink); margin-bottom: 14px; }
+.steps h3 { font-size: 21px; margin-bottom: 8px; }
+.steps p { margin: 0; color: var(--muted); font-size: 15.5px; }
+
+.partners { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.p-card { border-top: 2px solid var(--fg); padding-top: 20px; }
+.p-card .mono { font-family: var(--mono); font-size: 12.5px; color: var(--accent-ink); }
+.p-card h3 { font-size: 19px; margin: 6px 0 8px; }
+.p-card p { margin: 0; color: var(--muted); font-size: 15.5px; }
+.award { display: flex; align-items: center; gap: 18px; margin-top: 56px; background: var(--card); border: 1px solid var(--card-line); border-radius: 16px; padding: 22px 26px; max-width: 680px; }
+.award svg { width: 34px; height: 34px; color: var(--accent); flex: none; }
+.award b { font-family: var(--display); font-size: 19px; display: block; }
+.award span { color: var(--muted); font-size: 15px; }
+
+.gallery { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+.gallery img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; aspect-ratio: 16 / 10; }
+.timeline { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.timeline li { padding: 20px 20px 0 0; }
+.timeline b { font-family: var(--display); font-size: 22px; display: block; }
+.timeline span { color: var(--muted); font-size: 14.5px; }
+
+.help { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.h-card { background: var(--card); border: 1px solid var(--card-line); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px; }
+.h-card h3 { font-size: 21px; }
+.h-card p { margin: 0; color: var(--muted); font-size: 15.5px; }
+.h-card .tag { font-family: var(--mono); font-size: 12.5px; color: var(--accent-ink); }
+
+footer .wrap { padding-block: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); }
+footer p { margin: 0; color: var(--muted); font-size: 14.5px; }
+footer .email { font-weight: 600; color: var(--fg); user-select: all; }
+
+@media (max-width: 880px) {
+  .hero .wrap, .two { grid-template-columns: 1fr; gap: 40px; }
+  .hero .wrap { padding-block: 56px 64px; }
+  .steps, .partners, .help { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat:nth-child(3) { border-left: 0; padding-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sec { padding-block: 72px; }
+  .gallery { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  header .wrap { flex-direction: column; align-items: stretch; gap: 10px; padding-block: 12px; }
+  nav { gap: 20px; }
+}
+
+.cols3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.cols2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+.p-card a { color: var(--accent-ink); }
+.sub3 { font-size: 20px; margin: 0 0 10px; }
+.sub3 + .body-muted { margin-top: 0; }
+.body-muted { color: var(--muted); margin: 0 0 32px; max-width: 54ch; }
+.flow { margin: 0; padding: 0; list-style: none; counter-reset: f; border-top: 1px solid var(--line); }
+.flow li { counter-increment: f; display: grid; grid-template-columns: 36px minmax(0,1fr); gap: 8px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+.flow li::before { content: counter(f); font-family: var(--mono); font-size: 13px; color: var(--accent-ink); padding-top: 2px; }
+.kit { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 56px; }
+.kit > div { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px 26px; }
+.kit .mono, .give .mono { font-family: var(--mono); font-size: 12.5px; color: var(--accent-ink); }
+.kit p { margin: 8px 0 0; color: var(--muted); font-size: 15.5px; }
+.h-card .tag { font-size: 20px; font-family: var(--display); font-weight: 800; }
+.give { margin-top: 32px; max-width: 680px; }
+.give p { margin: 0 0 6px; color: var(--muted); }
+.give b { color: var(--fg); }
+.belief { margin: 64px 0 0; font-family: var(--display); font-size: clamp(24px, 3vw, 32px); font-weight: 700; line-height: 1.3; max-width: 760px; padding-left: 24px; border-left: 3px solid var(--accent); }
+.events { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); max-width: 860px; }
+.events li { display: grid; grid-template-columns: 120px minmax(0, 1fr) auto; gap: 20px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.events .date { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.events b { display: block; font-family: var(--display); font-size: 18px; }
+.events div span { color: var(--muted); font-size: 15px; }
+.events .count { font-family: var(--mono); font-size: 12.5px; color: var(--accent-ink); white-space: nowrap; }
+@media (max-width: 880px) { .cols3, .cols2, .kit { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .events li { grid-template-columns: 1fr; gap: 2px; } }
+.gaps { margin-top: 40px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 26px 28px; max-width: 860px; }
+.gaps h3 { font-size: 19px; margin-bottom: 12px; }
+.gaps ul { margin: 0; padding-left: 20px; color: var(--muted); display: grid; gap: 6px; }
+.figs { margin-top: 48px; }
+.fig b { display: block; font-family: var(--display); font-size: clamp(30px, 3.6vw, 40px); font-weight: 800; color: var(--accent-ink); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 12px; font-variant-numeric: tabular-nums; }
+.fig h3 { font-size: 19px; margin-bottom: 6px; }
+.fig p { margin: 0; color: var(--muted); font-size: 15.5px; max-width: 46ch; }
+.sources { margin: 40px 0 0; font-size: 13px; color: var(--muted); max-width: 760px; }
+
+.split { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 56px; align-items: start; padding-block: 28px; border-top: 1px solid var(--line); }
+.sec-head + .split, .sec > .split:first-child { border-top: 0; padding-top: 0; }
+.split .sec-head { margin-bottom: 0; }
+.side { font-size: 21px; line-height: 1.3; }
+.prose p { margin: 0 0 16px; max-width: 64ch; }
+.prose p:last-child { margin-bottom: 0; }
+.kit { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 20px; }
+.kit ul { margin: 12px 0 0; padding-left: 18px; color: var(--muted); font-size: 15px; display: grid; gap: 8px; }
+.kit .note { margin-top: 14px; font-size: 14px; color: var(--fg); }
+.h-card { gap: 6px; }
+.donate { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); gap: 32px; align-items: center; margin-top: 32px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 26px 28px; }
+.donate p { margin: 8px 0 0; color: var(--muted); }
+.donate b { color: var(--fg); }
+.upi { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-self: end; }
+.upi small { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--muted); }
+.upi span { font-family: var(--display); font-weight: 800; font-size: 22px; font-variant-numeric: tabular-nums; }
+.copy { font: 600 13px var(--body); border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+.table-slot { margin-top: 20px; border: 1.5px dashed var(--card-line); border-radius: 14px; padding: 22px; text-align: center; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.p-card ul, .plain { margin: 10px 0 0; padding-left: 18px; color: var(--muted); font-size: 15.5px; display: grid; gap: 4px; }
+.p-card p + p { margin-top: 0; }
+.figline { margin-top: 18px !important; font-size: 15px; color: var(--fg) !important; }
+.figline b { font-family: var(--display); font-size: 22px; color: var(--accent-ink); margin-right: 4px; }
+.gaps h3 { font-size: 17px; line-height: 1.4; }
+sup { font-size: 0.65em; color: var(--accent-ink); }
+@media (max-width: 880px) { .split, .donate { grid-template-columns: 1fr; gap: 16px; } .kit { grid-template-columns: 1fr; } .upi { justify-self: start; } }
+html { scroll-behavior: auto; }
+nav a.active { color: var(--fg); font-weight: 600; box-shadow: inset 0 -2px 0 var(--accent); }
+
+main > section:not(.hero) .sec { padding-block: 40px 48px; }
+.sec-head { margin-bottom: 24px; }
+.sec-head h2 { font-size: clamp(28px, 3.4vw, 38px); margin-top: 10px; }
+.sec-head p { font-size: 16.5px; margin-top: 8px; }
+.hero .wrap { padding-block: 56px 48px; }
+.facts { margin-top: 28px; padding-top: 18px; }
+.actions { margin-top: 26px; }
+footer .wrap { padding-block: 20px; }
+main { min-height: 0; }
+#story .split { border-top: 0; padding-top: 0; }
+.rm-btn { margin-top: 10px; background: none; border: 0; padding: 0; font: 700 14.5px var(--display); color: var(--accent-ink); cursor: pointer; }
+.rm-btn::after { content: " ↓"; }
+.rm-btn[aria-expanded="true"]::after { content: " ↑"; }
+.rm-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.rm-more { margin-top: 12px; }
+.rm-more > p { margin: 0 0 14px; }
+.wwd { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.wwd-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; }
+.wwd-card h3 { font-size: 18px; margin-bottom: 8px; }
+.wwd-card .prose p { font-size: 15px; color: var(--muted); }
+.wwd-card .links { margin-top: 10px; }
+#who .sec { padding-block: 28px 40px; }
+.hero .wrap { padding-block: 40px 28px; }
+.stats .stat { padding: 18px 20px; }
+.stat b { font-size: clamp(28px, 3vw, 36px); }
+.kit-wrap { margin-top: 28px; }
+.kit-wrap .sub3 { margin-top: 0 !important; }
+.split { padding-block: 18px; }
+#how .split .prose p, #story .prose p { font-size: 15.5px; }
+.camps-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 32px; align-items: start; }
+.camps-grid .gallery { grid-template-columns: 1fr; gap: 10px; }
+.camps-grid .gallery img { aspect-ratio: 16 / 8; }
+.camps-grid .events li { padding: 12px 0; }
+#problem .cols2 { gap: 24px; }
+#problem .figs { margin-top: 24px; }
+#problem .belief { margin-top: 24px; font-size: 21px; }
+#problem .sources { margin-top: 10px; font-size: 12px; }
+#problem .p-card .gaps { margin-top: 12px; padding: 0; border: 0; background: none; }
+#problem .gaps h3 { font-size: 15px; }
+#help .split { padding-block: 0; }
+#help .sub3 { margin-top: 24px !important; }
+#help .donate { margin-top: 16px; padding: 18px 22px; }
+#help .h-card { padding: 16px 22px; }
+#help .table-slot { margin-top: 12px; padding: 12px; }
+@media (max-width: 880px) { .wwd, .camps-grid { grid-template-columns: 1fr; } }
+.hero .wrap { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); padding-block: 36px 20px; gap: 48px; }
+.hero h1 { font-size: clamp(40px, 5.4vw, 60px); }
+.hero .lede { font-size: 17.5px; margin-top: 18px; }
+.hero-photo img { aspect-ratio: 4 / 3; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 30px; margin-top: 26px; padding-top: 16px; border-top: 1px solid var(--line); }
+.facts div { display: flex; flex-direction: column; }
+.facts b { font-family: var(--display); font-size: 24px; font-weight: 800; line-height: 1.1; color: var(--accent-ink); font-variant-numeric: tabular-nums; }
+.facts span { font-size: 13px; color: var(--muted); }
+#who .sec { padding-block: 12px 32px; }
+#who .sec-head { margin-bottom: 14px; }
+#how .wwd { margin-top: 4px; }
+#problem .sec-head { max-width: none; }
+#problem .sec-head p { max-width: 75ch; }
+.quad { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+.quad > div { border-top: 2px solid var(--fg); padding-top: 14px; }
+.quad h3 { font-size: 17px; margin: 4px 0 6px; }
+.quad p, .quad li { font-size: 14px !important; }
+.quad .fig b { font-size: 24px; }
+.quad .sub3 { font-size: 17px !important; margin: 4px 0 6px !important; }
+@media (max-width: 960px) { .quad { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .quad { grid-template-columns: 1fr; } }
+.hero .wrap { padding-block: 26px 12px; }
+.hero .eyebrow { margin-bottom: 10px; }
+.actions { margin-top: 20px; }
+.facts { margin-top: 20px; padding-top: 12px; flex-wrap: nowrap; }
+.wwd-card { padding: 18px 22px; }
+.wwd-card h3 { font-size: 17px; }
+.wwd-card.clamp:not(.open) .prose > p:first-child { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+@media (max-width: 560px) { .facts { flex-wrap: wrap; } }
+.hero figure { position: relative; max-width: 420px; justify-self: end; width: 100%; }
+.hero-photo img { aspect-ratio: 5 / 4; object-fit: cover; object-position: 50% 30%; }
+.inset { position: absolute; left: -36px; bottom: 34px; width: 42%; border-radius: 14px; overflow: hidden; border: 5px solid var(--surface); box-shadow: 0 18px 40px -20px rgba(0,0,0,.45); z-index: 2; }
+.inset img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.story-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 22px; }
+.story-photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }
+.story-photos img.wide { grid-column: span 2; aspect-ratio: 16 / 6; }
+.video { display: flex; align-items: center; gap: 14px; margin-top: 12px; padding: 12px 16px; border-radius: 12px; background: var(--card); border: 1px solid var(--card-line); text-decoration: none; }
+.video .play { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 14px; flex: none; padding-left: 3px; }
+.video b { display: block; font-family: var(--display); font-size: 15.5px; }
+.video small { color: var(--muted); font-size: 13px; }
+.video:hover { border-color: var(--accent); }
+.head-row { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); gap: 32px; align-items: end; margin-bottom: 20px; }
+.head-row .sec-head { margin-bottom: 0; max-width: none; }
+.head-photos { display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px; }
+.head-photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 12px; }
+.head-photos.one { grid-template-columns: 1fr; }
+.head-photos.one img { aspect-ratio: 5 / 2; }
+#problem .sec-head h2 { font-size: clamp(26px, 3vw, 34px); }
+#problem .sec-head p { font-size: 15.5px; }
+.help-photo { width: 100%; max-width: 150px; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 30%; border-radius: 12px; margin-top: 16px; }
+@media (max-width: 880px) { .head-row { grid-template-columns: 1fr; gap: 16px; } .inset { left: 10px; bottom: 10px; width: 40%; } .hero figure { justify-self: start; } }
+.hero h1 { margin-bottom: 0; }
+.subtitle { font-family: var(--display); font-weight: 700; font-size: clamp(20px, 2.4vw, 28px); line-height: 1.2; letter-spacing: -0.01em; margin: 10px 0 0; color: var(--fg); }
+.subtitle span { color: var(--accent); }
+.hero .lede { margin-top: 14px; }
+/* v10 fixes */
+.quad .mono { display: block; font-family: var(--mono); font-size: 12.5px; color: var(--accent-ink); }
+.quad h3, .quad .sub3 { font-size: 17px !important; line-height: 1.3; margin: 6px 0 8px !important; min-height: 2.6em; }
+.quad > div { display: flex; flex-direction: column; }
+.quad .rm-btn { align-self: flex-start; text-align: left; }
+.inset { position: static !important; width: 100% !important; border: 0 !important; box-shadow: none !important; margin-top: 10px; border-radius: 14px; }
+.hero figure .hero-photo img { aspect-ratio: 16 / 10 !important; object-position: 50% 30%; }
+.inset img { aspect-ratio: 16 / 7 !important; border-radius: 14px; }
+.hero figure figcaption { margin-top: 8px; }
+.sides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 0 0 22px; }
+.sides > div { background: var(--card); border: 1px solid var(--card-line); border-radius: 14px; padding: 14px 18px; }
+.sides .mono { font-family: var(--mono); font-size: 12px; color: var(--accent-ink); }
+.sides p { margin: 4px 0 0; font-size: 15px; }
+#how .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+#how .steps li { padding: 20px; }
+#how .steps h3 { font-size: 19px; margin-bottom: 6px; }
+#how .steps p { font-size: 14.5px; }
+@media (max-width: 960px) { #how .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .sides, #how .steps { grid-template-columns: 1fr; } }
+.sec-head h2 { margin-top: 0; }
+.sides.one { grid-template-columns: 1fr; max-width: 900px; }
+</style>
+
+<style>html,body{margin:0}</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<a class="brand" href="#top">The Lens Project<span>.</span></a>
+<nav aria-label="Sections">
+<a href="#top">Home</a><a href="#story">Our story</a><a href="#problem">The problem</a><a href="#how">How it works</a><a href="#partners">Partners</a><a href="#events">Past camps</a><a href="#help">How you help</a></nav>
+</div>
+</header>
+<main>
+<section class="hero" data-tab="top">
+<div class="wrap">
+<div>
+<p class="eyebrow">Free eye care · rural Bengal · since 2021</p>
+<h1>The Lens <em>Project</em></h1><p class="subtitle">Bridging the <span>last mile</span> to eye care.</p>
+<p class="lede">We run vision correction programs in rural Bengal that bring free eye care to underprivileged senior citizens and people affected by leprosy: checkups, diagnosis, corrective lenses and cataract surgery, at no or minimal cost.</p>
+<div class="actions">
+<a class="btn primary" href="#help">Donate to our cause</a>
+<a class="btn" href="#story">Our story</a>
+</div>
+<div class="facts">
+<div><b>4,500+</b><span>people assessed</span></div>
+<div><b>800+</b><span>eye surgeries</span></div>
+<div><b>~600</b><span>patients per camp</span></div>
+<div><b>2026</b><span>Diana Award</span></div>
+</div></div>
+<figure style="margin:0">
+<div class="hero-photo"><img alt="Ilina with two elderly patients at a camp" loading="lazy" src="img/ilina-with-two-elderly-patients.jpg"/></div><div class="inset"><img alt="Patients waiting inside the camp tent" loading="lazy" src="img/patients-waiting-inside-the-camp.jpg"/></div>
+<figcaption>At our vision correction camps in rural Bengal</figcaption>
+</figure>
+</div>
+</section><section data-tab="top" id="who">
+<div class="wrap sec">
+<div class="sec-head"><span class="pill">What we do</span></div>
+<div class="wwd"><div class="wwd-card clamp"><h3>Bi-Annual Vision Correction Events</h3><div class="prose">
+<p>Twice a year, we hold camps offering checkups, diagnosis, corrective lenses and surgery at no or minimal cost to the patient. Our leprosy camp reaches people affected by leprosy, who face some of the steepest barriers to basic healthcare.</p>
+<div class="rm-more" hidden=""><p>Each camp serves close to 600 patients, and about 150–200 of them go on to cataract surgery.</p></div><button aria-expanded="false" class="rm-btn" type="button">Read more</button>
+</div></div><div class="wwd-card clamp"><h3>Holistic Support</h3><div class="prose">
+<p>Beyond medical care, we see the deep toll that vision loss and stigma take on our patients. Many are elderly and isolated, and have lived for decades with poor sight, leprosy or poverty.</p>
+<div class="rm-more" hidden=""><p>These hardships have cut them off from friends, family and the support they need. Depression can also keep them from hoping for a better life or reaching out for help that is available.</p><p>So our chapters of local volunteers check in on patients all year round. This support runs informally, on the volunteers' goodwill and their trust in our commitment to the cause.</p></div><button aria-expanded="false" class="rm-btn" type="button">Read more</button>
+</div></div><div class="wwd-card"><h3>Fundraising</h3><div class="prose">
+<p>Each camp needs Rs. 1.5 to 2 lakhs from start to finish. We raise this all year from well-wishers, so that every patient's needs are covered. Any amount is a huge help, and donors can also sponsor one patient's food and lens, or their surgery.</p>
+</div><div class="links"><a href="#help">Donate to our cause now →</a></div></div></div>
+</div>
+</section><section data-tab="story" id="story">
+<div class="wrap sec">
+<div class="split">
+<div class="sec-head">
+<h2>Who are we?</h2>
+<div class="story-photos"><img alt="Ilina with the volunteer team in front of the camp banner" class="wide" loading="lazy" src="img/ilina-with-the-volunteer-team.jpg"/><img alt="Two elderly women at the camp registration table" loading="lazy" src="img/two-elderly-women-at-the.jpg"/><img alt="An eye test with trial-lens frames at a camp" loading="lazy" src="img/an-eye-test-with-trial.jpg"/></div><a class="video" href="https://www.youtube.com/watch?v=0DNPqHV4oQw" rel="noopener" target="_blank"><span aria-hidden="true" class="play">▶</span><span><b>Watch our story</b><small>Video on YouTube</small></span></a></div>
+<div class="prose">
+<p>The Lens Project, founded by Ilina Mukherjee in 2021, is a non-profit working to improve medical care for the underserved in rural Bengal, hand in hand with village councils and hospitals.</p>
+<p>We run vision correction programs that bring free eye care to underprivileged senior citizens and people affected by leprosy: checkups, diagnosis, corrective lenses and cataract surgery, at no or minimal cost to the patient.</p>
+<p>Our team brings together doctors from our partner hospital, Vivekananda Mission Ashram Eye Hospital, Midnapur, West Bengal, whose 15 medical staff support every camp, along with village youth, village councillors and local volunteers. A core group of 15 village youth leads the work on the ground.</p><div class="rm-more" hidden=""><p>We focus on small rural communities where people lack not only resources but awareness. Many don't know the healthcare schemes meant for them, or can't navigate them because of illiteracy, stigma or paperwork. India's health system has an enormous task in serving over a billion people, and some elders have fallen too far behind to reach it on their own. We believe care must go to them – not the other way around.</p><p>Since 2021, we have assessed more than 4,500 people and supported more than 800 cataract and eye surgeries, with the help of the Gram Panchayat, local health workers and kind-hearted donors. In 2026, The Lens Project received the Diana Award.</p></div><button aria-expanded="false" class="rm-btn" type="button">Read more</button>
+</div>
+</div>
+</div>
+</section><section data-tab="problem" id="problem">
+<div class="wrap sec">
+<div class="head-row"><div class="sec-head">
+<h2>Preventable Blindness in Marginalized Communities</h2>
+<p>India carries one of the world's heaviest burdens of preventable blindness. Despite real progress in healthcare, millions – especially the elderly, the rural poor and people affected by leprosy – still lack basic eye care. For them, even a treatable condition like cataract can mean permanent, life-altering vision loss.</p>
+</div><div class="head-photos one"><img alt="Patients waiting in a row at a camp" loading="lazy" src="img/patients-waiting-in-a-row.jpg"/></div></div>
+<div class="quad"><div class="p-card">
+<span class="mono">#1</span><h3>Cataracts and Aging</h3>
+<p>Cataracts are the leading cause of blindness in India, especially among those aged 50 and above. Although cataract surgery is simple and highly effective, it remains out of reach for large parts of the rural population due to:</p>
+<div class="rm-more" hidden=""><ul><li>Lack of awareness</li><li>Distance from hospitals</li><li>High cost of private care</li><li>Overburdened or inaccessible government schemes</li></ul><p class="figline"><b>66%+</b> of blindness in people aged 50+ is due to cataracts.<sup>1</sup></p></div><button aria-expanded="false" class="rm-btn" type="button">See the barriers</button>
+</div><div class="p-card">
+<span class="mono">#2</span><h3>Leprosy and Neglect</h3>
+<p>Though declared "eliminated" in 2005, leprosy has not been eradicated in India. Over 1.14 lakh new cases were reported in 2019–20 (WHO).<sup>2</sup> Thousands of survivors, particularly in colonies like Nimpura (near Kharagpur), continue to live with:</p>
+<div class="rm-more" hidden=""><ul><li>Residual physical disabilities</li><li>Ocular complications like lagophthalmos, corneal ulcers, and blindness</li><li>Lifelong stigma and social exclusion</li></ul><div class="gaps">
+<h3>Despite being officially recognized as persons with disabilities, leprosy-affected individuals face massive gaps in access to eye care, including:</h3>
+<ul>
+<li>Government schemes that require difficult certifications</li>
+<li>No integration of eye care into long-term leprosy support</li>
+<li>Mobile health units that rarely reach remote colonies</li>
+<li>No structured follow-up care or disability rehabilitation</li>
+</ul>
+</div></div><button aria-expanded="false" class="rm-btn" type="button">See what they face</button>
+</div><div><span class="mono">#3</span>
+<h3 class="sub3">Invisible Barriers</h3>
+<p class="body-muted" style="margin-bottom:10px">Most patients we see are not just underserved; they are left out entirely. They:</p>
+<div class="rm-more" hidden=""><ul class="plain"><li>Cannot afford surgery</li><li>Do not know such services exist</li><li>Struggle to leave their homes due to stigma or mobility issues</li></ul><p class="body-muted">Many have gone decades without being seen – literally and figuratively.</p></div><button aria-expanded="false" class="rm-btn" type="button">See more</button>
+</div><div><span class="mono">#4</span>
+<h3 class="sub3">The Cost of Inaction</h3>
+<p class="body-muted">Vision loss is linked to poverty, isolation, and depression.</p>
+<div class="fig"><b>$411 billion</b><p>The global cost of lost productivity due to vision impairment, per year.<sup>3</sup></p></div>
+</div></div>
+<blockquote class="belief">We believe sight is a right, and access should never depend on geography, illness, or income. Let us change that.</blockquote>
+<p class="sources"><sup>1</sup> National Blindness and Visual Impairment Survey 2015–19, Government of India. <sup>2</sup> WHO, as reported by the National Leprosy Eradication Programme. <sup>3</sup> Lancet Global Health Commission on Global Eye Health, 2021 (estimate for 2018).</p>
+</div>
+</section><section data-tab="how" id="how">
+<div class="wrap sec">
+<div class="head-row"><div class="sec-head">
+<h2>How do we run our programs?</h2>
+<p>Every camp takes careful planning and logistics. Each one serves close to 600 patients, and about 150–200 of them go on to cataract surgery.</p>
+</div><div class="head-photos"><img alt="Registration and doctors' tables at a camp" loading="lazy" src="img/registration-and-doctors-tables-at.jpg"/><img alt="The eye-testing area inside the tent" loading="lazy" src="img/the-eye-testing-area-inside.jpg"/></div></div>
+<div class="sides one"><div><span class="mono">The Lens Project</span><p>For medical expertise, we partner with a local hospital, whose doctors treat patients and bring the equipment and medicines. The Lens Project takes care of everything else – planning, logistics, organization and funding – through fundraising and volunteers.</p></div></div>
+<ol class="steps">
+<li><h3>Plan</h3><p>We coordinate with the Gram Panchayat and local health workers, who help us reach patients and open up school buildings and community halls. Leaflets go out a few weeks before each camp.</p></li>
+<li><h3>Screen</h3><p>Villagers arrive early to register and have their vitals checked. After dilating drops, nurses do a first checkup and the specialist doctor screens each patient.</p></li>
+<li><h3>Treat</h3><p>Glasses are handed out where possible. About 200 patients per camp are booked for cataract surgery; volunteers give each a date and transport, and bring them safely home.</p></li>
+<li><h3>Follow up</h3><p>For the next month, volunteers check on every patient's well-being and answer any questions they have.</p></li>
+</ol>
+<div class="kit-wrap"><h3 class="sub3" style="margin-top:56px">Program Day Setup, Materials &amp; Process</h3><div class="rm-more" hidden=""><div class="kit">
+<div><span class="mono">Logistics</span>
+<ul>
+<li>Tent and pandal setup for patients, with tables and medical stations for examinations</li>
+<li>Volunteer support for the entire process, including food and water for villagers</li>
+<li>Post-program support for surgery patients, including transportation to hospitals and post-surgery checkups</li>
+<li>Physical and emotional support for senior citizens</li>
+<li>Adequate number of volunteers on program day and for follow-up days</li>
+</ul>
+</div>
+<div><span class="mono">Medical support</span>
+<ul>
+<li>A team of doctors, nurses, and an ophthalmologist</li>
+<li>Diagnostic tools including vision charts, slit lamps, autorefractors, and intraocular pressure measuring devices</li>
+<li>Medicines and eye drops for both general treatment and post-operative care</li>
+<li>Corrective lenses (pre-made in common powers), distributed immediately where possible</li>
+</ul>
+<p class="note">We work closely with Vivekananda Mission Ashram Eye Hospital, Midnapur, West Bengal, for medical support, surgical scheduling, and post-surgery follow-ups.</p>
+</div>
+<div><span class="mono">Post-program day support</span>
+<ul>
+<li>Patients earmarked for cataract surgery (approximately 200 on average) are given a date and means of transport by volunteers</li>
+<li>After surgery, they are safely returned to their homes</li>
+<li>Volunteers check in on their well-being for the next month and answer any questions they may have</li>
+</ul>
+</div>
+</div></div><button aria-expanded="false" class="rm-btn" type="button">See setup, materials &amp; process</button></div>
+</div>
+</section><section data-tab="partners" id="partners">
+<div class="wrap sec">
+<div class="sec-head">
+<h2>Built with the community</h2>
+</div>
+<div class="partners">
+<div class="p-card"><span class="mono">Medical partner</span><h3>Vivekananda Mission Ashram Eye Hospital</h3><p>Midnapur, West Bengal. Provides the medical team, surgery scheduling and post-surgery follow-ups.</p></div>
+<div class="p-card"><span class="mono">Local bodies</span><h3>Gram Panchayat and health workers</h3><p>They help us reach patients and open up school buildings and community halls for our camps.</p></div>
+<div class="p-card"><span class="mono">Volunteers</span><h3>Chapters of local volunteers</h3><p>Driven by goodwill, they run every camp day and stay in touch with patients all year.</p></div>
+</div>
+<div class="award">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="9" r="6"></circle><path d="m8.5 14-1.5 8 5-3 5 3-1.5-8"></path></svg>
+<div><b>The Diana Award, 2026</b><span>Awarded to The Lens Project.</span></div>
+</div>
+</div>
+</section><section data-tab="events" id="events">
+<div class="wrap sec">
+<div class="sec-head">
+<h2>Past Events</h2>
+</div>
+<div class="camps-grid"><ul class="events">
+<li><span class="date">16 Nov 2025</span><div><b>Vision Correction Program</b><span>Hena Smriti Mandir, Chaitanya Ashram Road, Kharagpur</span></div><span class="count">~700 entries</span></li>
+<li><span class="date">17 Mar 2025</span><div><b>Leprosy Vision Correction Program</b><span>Nimpura, Kharagpur</span></div><span class="count">500 entries</span></li>
+<li><span class="date">16 Nov 2024</span><div><b>Vision Correction Program</b><span>Hena Smriti Mandir, Chaitanya Ashram Road, Kharagpur</span></div><span class="count">~600 entries</span></li>
+<li><span class="date">Nov 2023</span><div><b>Vision Correction Program</b><span>Hena Smriti Mandir, Chaitanya Ashram Road, Kharagpur</span></div><span class="count">~450 entries</span></li>
+<li><span class="date">16 Nov 2022</span><div><b>Eye Camp</b><span>Hena Smriti Mandir, Chaitanya Ashram Road, Kharagpur</span></div><span class="count"></span></li>
+</ul><div class="gallery" style="">
+<img alt="The Lens Project volunteer team" loading="lazy" src="img/the-lens-project-volunteer-team.jpg"/>
+<img alt="An eye examination at a camp" loading="lazy" src="img/an-eye-examination-at-a.jpg"/>
+</div></div>
+</div>
+</section><section data-tab="help" id="help">
+<div class="wrap sec">
+<div class="split">
+<div class="sec-head" style="margin-bottom:0">
+<h2>How can you help?</h2>
+<img alt="Ilina checking a patient's blood pressure" class="help-photo" loading="lazy" src="img/ilina-checking-a-patient-s.jpg"/></div>
+<div class="prose">
+<p>Our camps have been funded by friends, family and kind-hearted individuals. As word spreads from village to village, more people come each time – often more than we expect. We've managed so far, but growing demand makes it harder to keep up. With your support, we can keep reaching everyone who needs help.</p>
+<div class="rm-more" hidden=""><p>Each camp is a lifeline for rural and leprosy-affected communities who have few other places to turn.</p><p>Our partner hospital performs surgeries free under government and NGO schemes. The Lens Project funds camp-day logistics and lenses for about 200 patients per camp, twice a year.</p></div><button aria-expanded="false" class="rm-btn" type="button">Read more</button>
+</div>
+</div>
+<h3 class="sub3" style="margin-top:56px">Sponsor one person</h3>
+<div class="help">
+<div class="h-card"><span class="tag">Rs. 1,600</span><h3>Food and lens</h3></div>
+<div class="h-card"><span class="tag">Rs. 3,000</span><h3>Food, lens and surgery</h3></div>
+<div class="h-card"><span class="tag">Rs. 8,000</span><h3>Hansen chair for a leprosy patient</h3></div>
+</div>
+<div class="donate">
+<div>
+<span class="mono">Donations</span>
+<p><b>All donations are appreciated!</b> Please pay the amount through UPI, then message the same number on WhatsApp with your name and the amount donated.</p>
+</div>
+<div class="upi"><small>UPI</small><span id="upi">+91 9845581690</span><button class="copy" id="copy-upi" type="button">Copy</button></div>
+</div>
+
+</div>
+</section></main>
+<footer>
+<div class="wrap">
+<p><b>The Lens Project</b> · Founded 2021 by Ilina Mukherjee</p>
+<p>Contact us: <span class="email">ilinamukherjee2020@gmail.com</span> · Bangalore</p>
+</div>
+</footer><script>
+document.addEventListener("click", function (e) {
+  var b = e.target.closest(".rm-btn"); if (!b) return;
+  var m = b.previousElementSibling; var open = m.hidden;
+  m.hidden = !open; b.setAttribute("aria-expanded", String(open));
+  if (!b.dataset.label) b.dataset.label = b.textContent;
+  b.textContent = open ? "Show less" : b.dataset.label;
+  var card = b.closest(".wwd-card"); if (card) card.classList.toggle("open", open);
+});
+</script>
+<script>
+(function () {
+  var panes = Array.prototype.slice.call(document.querySelectorAll("[data-tab]"));
+  var ids = panes.map(function (p) { return p.getAttribute("data-tab"); });
+  function show(id, push) {
+    if (ids.indexOf(id) < 0) id = "top";
+    panes.forEach(function (p) { p.hidden = p.getAttribute("data-tab") !== id; });
+    document.querySelectorAll("nav a").forEach(function (a) {
+      a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+    });
+    window.scrollTo(0, 0);
+    if (push) { try { history.pushState(null, "", "#" + id); } catch (e) {} }
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute("href").slice(1);
+    if (ids.indexOf(id) < 0) return;
+    e.preventDefault();
+    show(id, true);
+  });
+  window.addEventListener("popstate", function () { show(location.hash.slice(1) || "top", false); });
+  show(location.hash.slice(1) || "top", false);
+})();
+</script>
+<script>
+document.getElementById("copy-upi").addEventListener("click", async e => {
+  const btn = e.currentTarget, el = document.getElementById("upi");
+  try { await navigator.clipboard.writeText(el.textContent.replace(/\s/g, "")); btn.textContent = "Copied"; }
+  catch { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected"; }
+  setTimeout(() => { btn.textContent = "Copy"; }, 1600);
+});
+</script>
+
+</body>
+</html>
