@@ -13,6 +13,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
+:root { color-scheme: light; }
+
 /* Layout: same system as Ilina's portfolio. One calm column, generous space, few sections, one orange accent. */
 :root {
   --bg: #fafafa; --band: #f4f4f2; --surface: #ffffff; --card: #f8f3ea; --card-line: #f0e0c6;
@@ -23,18 +25,8 @@
   --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #121212; --band: #171716; --surface: #1c1c1b; --card: #201c16; --card-line: #3a3023;
-    --fg: #f0efec; --muted: #a3a29d; --line: #2c2c2a; --accent: #f5a142; --accent-ink: #f5a142; --accent-soft: #3a2a15;
-    --dark-btn: #f0efec; --dark-btn-fg: #121212; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #121212; --band: #171716; --surface: #1c1c1b; --card: #201c16; --card-line: #3a3023;
-  --fg: #f0efec; --muted: #a3a29d; --line: #2c2c2a; --accent: #f5a142; --accent-ink: #f5a142; --accent-soft: #3a2a15;
-  --dark-btn: #f0efec; --dark-btn-fg: #121212; color-scheme: dark;
-}
+
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
